@@ -42,7 +42,7 @@ onMounted(() => {
     <h1>My Contacts</h1>
     <select @change="changeOrder" aria-label="Sort contacts">
       <option value="asc" selected>ascending</option>
-      <option value="dsc">Descending</option>
+      <option value="dsc">descending</option>
     </select>
   </header>
   <main>

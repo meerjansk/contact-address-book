@@ -6,15 +6,19 @@ export default function usePagination(contacts) {
   const itemsPerPage = 5;
   const currentPage = ref(0);
 
+  const getCurrentPageItems = () => {
+    return contacts.value.slice(
+      currentPage.value * itemsPerPage,
+      currentPage.value * itemsPerPage + itemsPerPage
+    );
+  };
+
   const getPreviousPage = () => {
     if (currentPage.value === 0) {
       return paginatedContacts.value;
     }
     currentPage.value--;
-    paginatedContacts.value = contacts.value.slice(
-      currentPage.value * itemsPerPage,
-      currentPage.value * itemsPerPage + itemsPerPage
-    );
+    paginatedContacts.value = getCurrentPageItems();
   };
 
   const getNextPage = () => {
@@ -22,10 +26,7 @@ export default function usePagination(contacts) {
       return paginatedContacts.value;
     }
     currentPage.value++;
-    paginatedContacts.value = contacts.value.slice(
-      currentPage.value * itemsPerPage,
-      currentPage.value * itemsPerPage + itemsPerPage
-    );
+    paginatedContacts.value = getCurrentPageItems();
   };
 
   const changeOrder = (event) => {
